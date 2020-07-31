@@ -28,16 +28,17 @@ module.exports = {
                     { loader: 'html-loader' }
                 ]
             },{
-                test: /\.css$/i,
+                test: /\.less$/,
                 use: [
-                    'style-loader',
+                    { loader: 'style-loader' },
                     {
                         loader: 'css-loader',
                         options: {
-                            modules: true
+                            modules: true,
                         }
-                    }
-                ],
+                    },
+                    { loader: 'less-loader' }
+                ]
             }
         ]
     },

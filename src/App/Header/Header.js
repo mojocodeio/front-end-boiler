@@ -1,23 +1,26 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { Button } from 'semantic-ui-react';
+import { connect } from 'react-redux';
 
-export const Header = () => {
+/** components */
+import AuthenticatedHeader from './AuthenticatedHeader/AuthenticatedHeader';
+import UnauthenticatedHeader from './UnauthenticatedHeader/UnauthenticatedHeader';
+
+export const Header = ({
+    isAuthenticated
+}) => {
+    if (isAuthenticated) {
+        return (
+            <AuthenticatedHeader />
+        );
+    }
+
     return (
-        <div>
-            <NavLink to='/dashboard'>
-                <Button primary>
-                    Dashboard
-                </Button>
-            </NavLink>
-
-            <NavLink to='/login'>
-                <Button primary>
-                    Login
-                </Button>
-            </NavLink>
-        </div>
-    );
+        <UnauthenticatedHeader />
+    )
 }
 
-export default Header;
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+})
+
+export default connect(mapStateToProps)(Header);

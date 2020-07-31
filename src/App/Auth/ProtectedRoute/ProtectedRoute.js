@@ -3,21 +3,29 @@ import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 
 export const ProtectedRoute = ({ isAuthenticated, component: Component, ...rest }) => {
-    if (isAuthenticated) {
-        return (
-            <Route
-                {...rest}
-                render={props => <Component {...props} />}
-            />
-        )
-    }
     return (
-        <Redirect pathname='/' />
-    );
-};
+        <Route
+            {...rest}
+            render={props => {
+                if (isAuthenticated) {
+                    return (
+                        <Component {...props} />
+                    )
+                }
+
+                <Redirect
+                    to={{
+                        pathname: '/',
+                        state: { from: props.location }
+                    }}
+                />
+            }}
+        />
+    )
+}
 
 const mapStateToProps = state => ({
-    isAuthenticated: true,
+    isAuthenticated: state.auth.isAuthenticated,
 })
 
-export default connect(mapStateToProps)(ProtectedRoute)
+export default connect(mapStateToProps)(ProtectedRoute);

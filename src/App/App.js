@@ -10,10 +10,11 @@ import Dashboard from './Dashboard/Dashboard';
 export const App = () => {
     return (
         <div>
+            <Header />
             <Switch>
                 <Route path="/" exact component={AuthForm} />
                 <ProtectedRoute path="/dashboard" component={Dashboard} />
-                <Route component={Dashboard} />
+                <Route component={AuthForm} />
             </Switch>
         </div>
     )

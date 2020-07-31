@@ -1,12 +1,7 @@
 import { combineReducers } from 'redux';
 
-const configReducer = (state = {}, action) => {
-    switch(action.type) {
-        default:
-            return state;
-    }
-};
+import authReducer from '../App/Auth/reducer';
 
 export const rootReducer = combineReducers({
-    config: configReducer,
+    auth: authReducer,
 });

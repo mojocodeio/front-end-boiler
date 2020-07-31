@@ -12,9 +12,7 @@ export const ProtectedRoute = ({ isAuthenticated, component: Component, ...rest 
         )
     }
     return (
-        <Redirect
-            pathname='/'
-        />
+        <Redirect pathname='/' />
     );
 };
 

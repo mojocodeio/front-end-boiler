@@ -1,17 +1,17 @@
 import React from 'react';
-import { Route, Switch, NavLink } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 /** components */
+import ProtectedRoute from './Auth/ProtectedRoute/ProtectedRoute';
 import Header from './Header/Header';
 import Dashboard from './Dashboard/Dashboard';
 
 export const App = () => {
     return (
         <div>
-            <NavLink to={'/dashboard'}>Dashboard</NavLink>
             <Switch>
                 <Route path="/" exact component={Header} />
-                <Route path="/dashboard" component={Dashboard} />
+                <ProtectedRoute path="/dashboard" component={Dashboard} />
                 <Route component={Dashboard} />
             </Switch>
         </div>

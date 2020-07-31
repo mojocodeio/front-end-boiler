@@ -30,7 +30,17 @@ module.exports = {
             },{
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader']
-            }
+            },{
+                test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/, //must match all of these files for using semantic-ui
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 8192,
+                        },
+                    },
+                ],
+            },
         ]
     },
     plugins: [

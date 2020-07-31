@@ -28,17 +28,8 @@ module.exports = {
                     { loader: 'html-loader' }
                 ]
             },{
-                test: /\.less$/,
-                use: [
-                    { loader: 'style-loader' },
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            modules: true,
-                        }
-                    },
-                    { loader: 'less-loader' }
-                ]
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
             }
         ]
     },

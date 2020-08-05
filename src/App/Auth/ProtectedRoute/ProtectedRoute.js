@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect, withRouter } from 'react-router-dom';
 
 export const ProtectedRoute = ({ isAuthenticated, component: Component, ...rest }) => {
     return (
@@ -14,10 +14,7 @@ export const ProtectedRoute = ({ isAuthenticated, component: Component, ...rest 
                 }
 
                 <Redirect
-                    to={{
-                        pathname: '/',
-                        state: { from: props.location }
-                    }}
+                    to='/'
                 />
             }}
         />
@@ -28,4 +25,4 @@ const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,
 })
 
-export default connect(mapStateToProps)(ProtectedRoute);
+export default withRouter(connect(mapStateToProps)(ProtectedRoute));
